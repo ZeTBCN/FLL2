@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find your hobby mate!</title>
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+        }
+        body{
+            height: auto;
+            margin: auto;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(45deg, crimson, purple);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        hr {
+            border: none;
+            width: 60%;
+            height: 10px;
+            background-color: azure;
+            border-radius: 5px;
+        }
+        #heading {
+            text-align: center;
+            color: white;
+        }
+        #descriptor{
+            color: white;
+            text-align: center;
+        }
+        .image-container{
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .image-container img{
+            margin: 10px;
+            width: 800px;
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .search{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .Search-Inp{
+            padding: 10px;
+            width: 500px;
+            font-size: 24px;
+            border: 3px dashed cornflowerblue;
+            border-radius: 5px;
+            cursor:text;
+        }
+        .search button{
+            padding: 10px;
+            font-size: 24px;
+            border: 3px solid green;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #inputList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #inputList li {
+            margin: 5px;
+            display: none; /* Initially hide all list items */
+            text-align: center;
+            font-size: 25px;
+        }
+
+        #errorMessage {
+            color: black;
+            display: none;
+            text-align: center;
+            font-size: 30px;
+        }
+        #Most-common-hobby{
+            color: black;
+            text-align: center;
+            font-size: xx-large;
+            background-color: #ccc;
+            border: 3px solid blue;
+            border-radius: 5px;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        #Most-common-hobby-ls{
+            color: black;
+            text-align: center;
+            font-size: xx-large;
+            background-color: lightblue;
+            border: 3px solid green;
+            border-radius: 5px;
+            margin-left: 40%;
+            margin-right: 40%;
+        }
+        #Most-common-hobby-ls li:nth-child(odd){
+            background-color: lightcoral;
+        }
+        a{
+            color: blue;
+            text-decoration:none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        a:hover{
+            color: darkblue;
+            background-color: whitesmoke;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">Find Your Hobby Mate</h1>
+    <hr>
+    <h3 id="descriptor">A tool that allows you to find new people with the same interests as you</h3>
+    <div class="image-container">
+        <img src="https://static.independent.co.uk/2022/09/29/11/28151716-bbfdbabd-9dbc-4131-9f2f-4651c17faff6.jpg" alt="sorry couldn't load">
+        <img src="https://www.strathearn.org.uk/manager/resources/strath-7235-w922h480.jpg" alt="sorry couldn't load">
+    </div>
+    <div class="search">
+        <input type="text" name="Find your hobby" id="SearchInp" class="Search-Inp" placeholder="Hobby?">
+        <button onclick="searchHobby()" id="searchButton" class="search-button">
+            Find my Hobby Mate
+        </button>
+    </div>
+    <ul id="inputList">
+        <li><a href="Football/football.html">Football</a></li>
+        <li><a href="rugby.html">Rugby</a></li>
+        <li><a href="drama.html">Drama</a></li>
+        <li><a href="robotic/robotics.html">Robotics</a></li>
+        <li><a href="gym.html">Gym</a></li>
+    </ul>
+    <p id="errorMessage">No matching hobbies found.</p>
+    <script>
+        function searchHobby() {
+            var userInput = document.getElementById("SearchInp").value.trim().toLowerCase();
+            var list = document.getElementById("inputList");
+            var items = list.getElementsByTagName("li");
+            var errorMessage = document.getElementById("errorMessage");
+
+            // Hide all list items and the error message
+            for (var i = 0; i < items.length; i++) {
+                items[i].style.display = "none";
+            }
+            errorMessage.style.display = "none";
+
+            // Show only matching items
+            var foundMatch = false;
+            for (var i = 0; i < items.length; i++) {
+                var itemText = items[i].innerText.trim().toLowerCase();
+                if (itemText.includes(userInput)) {
+                    items[i].style.display = "block";
+                    foundMatch = true;
+                }
+            }
+
+            // If no matching item is found, display the error message
+            if (!foundMatch) {
+                errorMessage.style.display = "block";
+            }
+        }
+    </script>
+    <h3 id="Most-common-hobby"> List of our Most common hobbies:</h3>
+    <ul id="Most-common-hobby-ls">
+        <ol>
+            <li><a href="Football/football.html">Football</a></li>
+            <li><a href="rugby.html">Rugby</a></li>
+            <li><a href="drama.html">Drama</a></li>
+            <li><a href="robotic/robotics.html">Robotics</a></li>
+            <li><a href="gym.html">Gym</a></li>
+        </ol>
+       
+
+    </ul>
+</body>
+</html>
